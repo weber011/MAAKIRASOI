@@ -11,17 +11,14 @@ export default function StorySection() {
     offset: ["start end", "end start"],
   });
 
-  // Reduced parallax on mobile to prevent clipping and jank
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -50]);
-
   return (
     <section id="story" ref={containerRef} className="py-20 md:py-32 bg-luxury-beige overflow-hidden">
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
           
           {/* Image */}
-          <div className="w-full lg:w-1/2 flex justify-center h-[400px] sm:h-[500px] md:h-[650px] relative px-4 md:px-0">
-            <motion.div style={{ y: y1 }} className="w-full max-w-sm md:max-w-md h-[90%] md:h-[95%] mt-auto relative rounded-t-[150px] md:rounded-t-full rounded-b-3xl overflow-hidden force-gpu shadow-2xl shadow-dark-chocolate/10 border-4 border-warm-cream/50">
+          <div className="w-full lg:w-1/2 flex justify-center lg:justify-start px-4 md:px-0">
+            <div className="w-full max-w-md aspect-[3/4] relative rounded-t-full rounded-b-3xl overflow-hidden shadow-2xl shadow-dark-chocolate/10 border-4 border-warm-cream/50">
               <Image 
                 src="https://images.unsplash.com/photo-1549931319-a545dcf3bc73?q=80&w=2070&auto=format&fit=crop" 
                 alt="Artisan baker kneading dough" 
@@ -30,7 +27,7 @@ export default function StorySection() {
                 className="object-cover"
                 priority
               />
-            </motion.div>
+            </div>
           </div>
 
           {/* Text Content */}
