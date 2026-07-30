@@ -33,35 +33,39 @@ export default function HeroSection() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2 }}
+          transition={{ duration: 1, delay: 0.1 }}
+          className="flex flex-col items-center mb-6 md:mb-8"
         >
-          <p className="font-poppins text-golden-wheat text-[10px] sm:text-xs md:text-sm uppercase tracking-[0.2em] md:tracking-[0.3em] mb-4 md:mb-6 max-w-full">
-            Slow-Fermented • Gluten-Free • Vegan
+          <h1 className="font-playfair text-5xl sm:text-7xl md:text-[8rem] lg:text-[10rem] text-warm-cream font-bold tracking-wider leading-none drop-shadow-2xl">
+            Maa Ki Rasoi
+          </h1>
+          <p className="font-poppins text-golden-wheat text-xs sm:text-sm md:text-lg uppercase tracking-[0.3em] md:tracking-[0.5em] mt-4 max-w-full">
+            By Ekta
           </p>
         </motion.div>
 
-        <motion.h1 
-          className="font-playfair text-fluid-h1 text-warm-cream mb-8 max-w-4xl mx-auto"
+        <motion.h2 
+          className="font-playfair text-2xl md:text-4xl text-warm-cream/90 mb-8 max-w-4xl mx-auto font-light"
           initial="hidden"
           animate="visible"
           variants={{
             hidden: {},
-            visible: { transition: { staggerChildren: 0.1 } },
+            visible: { transition: { staggerChildren: 0.1, delayChildren: 0.5 } },
           }}
         >
           {["Freshly", "Baked.", "Handcrafted", "Wellness."].map((word, i) => (
             <motion.span
               key={i}
-              className={`inline-block mr-2 md:mr-4 ${i === 3 ? 'text-golden-wheat italic w-full mt-2 md:mt-0 md:w-auto' : ''}`}
+              className={`inline-block mr-2 md:mr-3 ${i === 3 ? 'text-golden-wheat italic' : ''}`}
               variants={{
-                hidden: { opacity: 0, y: 40 },
+                hidden: { opacity: 0, y: 20 },
                 visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.2, 0.65, 0.3, 0.9] } },
               }}
             >
               {word}
             </motion.span>
           ))}
-        </motion.h1>
+        </motion.h2>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
