@@ -9,6 +9,7 @@ import IngredientsParallax from "@/components/home/IngredientsParallax";
 import ComparisonSection from "@/components/home/ComparisonSection";
 import OrderTimeline from "@/components/home/OrderTimeline";
 import ServicesSection from "@/components/home/ServicesSection";
+import ContactSection from "@/components/home/ContactSection";
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
       <ComparisonSection />
       <OrderTimeline />
       <ServicesSection />
+      <ContactSection />
       <Footer />
     </main>
   );

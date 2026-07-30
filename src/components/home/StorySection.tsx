@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 
 export default function StorySection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -10,28 +11,33 @@ export default function StorySection() {
     offset: ["start end", "end start"],
   });
 
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  // Reduced parallax on mobile to prevent clipping and jank
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -50]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, 50]);
 
   return (
-    <section id="story" ref={containerRef} className="py-32 bg-luxury-beige overflow-hidden">
-      <div className="container mx-auto px-6">
-        <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+    <section id="story" ref={containerRef} className="py-20 md:py-32 bg-luxury-beige overflow-hidden">
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
           
           {/* Images */}
-          <div className="w-full lg:w-1/2 flex gap-6 h-[600px] relative">
-            <motion.div style={{ y: y1 }} className="w-1/2 h-[80%] mt-[20%] relative rounded-t-full overflow-hidden">
-              <img 
+          <div className="w-full lg:w-1/2 flex gap-4 md:gap-6 h-[400px] sm:h-[500px] md:h-[600px] relative">
+            <motion.div style={{ y: y1 }} className="w-1/2 h-[80%] mt-[20%] relative rounded-t-[100px] md:rounded-t-full overflow-hidden force-gpu shadow-xl shadow-dark-chocolate/10">
+              <Image 
                 src="https://images.unsplash.com/photo-1549931319-a545dcf3bc73?q=80&w=2070&auto=format&fit=crop" 
                 alt="Artisan baker kneading dough" 
-                className="w-full h-full object-cover"
+                fill
+                sizes="(max-width: 768px) 50vw, 25vw"
+                className="object-cover"
               />
             </motion.div>
-            <motion.div style={{ y: y2 }} className="w-1/2 h-[90%] relative rounded-b-full overflow-hidden">
-              <img 
+            <motion.div style={{ y: y2 }} className="w-1/2 h-[90%] relative rounded-b-[100px] md:rounded-b-full overflow-hidden force-gpu shadow-xl shadow-dark-chocolate/10">
+              <Image 
                 src="https://images.unsplash.com/photo-1589367920969-ab8e050bfc54?q=80&w=1974&auto=format&fit=crop" 
                 alt="Freshly baked artisan bread" 
-                className="w-full h-full object-cover"
+                fill
+                sizes="(max-width: 768px) 50vw, 25vw"
+                className="object-cover"
               />
             </motion.div>
           </div>
@@ -39,19 +45,20 @@ export default function StorySection() {
           {/* Text Content */}
           <div className="w-full lg:w-1/2 flex flex-col justify-center">
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true, margin: "-50px" }}
+              className="force-gpu"
             >
-              <h4 className="font-poppins text-soft-brown uppercase tracking-[0.2em] text-sm mb-4">
+              <h4 className="font-poppins text-soft-brown uppercase tracking-[0.2em] text-xs md:text-sm mb-4">
                 Our Story
               </h4>
-              <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl text-dark-chocolate mb-8 leading-tight">
+              <h2 className="font-playfair text-fluid-h2 text-dark-chocolate mb-6 md:mb-8 max-w-2xl">
                 Handmade baking with <span className="text-golden-wheat italic">passion.</span>
               </h2>
               
-              <div className="space-y-6 font-poppins text-dark-chocolate/80 text-base md:text-lg leading-relaxed font-light">
+              <div className="space-y-4 md:space-y-6 font-poppins text-dark-chocolate/80 text-fluid-p font-light">
                 <p>
                   It started with a simple belief: bread should be nourishing, wholesome, and crafted with love. At Maa Ki Rasoi by Ekta, we've returned to the roots of artisan baking.
                 </p>
@@ -63,11 +70,12 @@ export default function StorySection() {
                 </p>
               </div>
 
-              <div className="mt-12">
-                <img 
+              <div className="mt-10 md:mt-12 relative w-32 md:w-48 h-12 md:h-16">
+                <Image 
                   src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Signature_of_Ekta_Kapoor.svg" 
                   alt="Ekta Signature" 
-                  className="h-12 opacity-80 mix-blend-multiply filter contrast-200 sepia"
+                  fill
+                  className="object-contain opacity-80 mix-blend-multiply filter contrast-200 sepia"
                 />
               </div>
             </motion.div>
