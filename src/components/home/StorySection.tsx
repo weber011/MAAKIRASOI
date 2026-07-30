@@ -13,31 +13,22 @@ export default function StorySection() {
 
   // Reduced parallax on mobile to prevent clipping and jank
   const y1 = useTransform(scrollYProgress, [0, 1], [0, -50]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, 50]);
 
   return (
     <section id="story" ref={containerRef} className="py-20 md:py-32 bg-luxury-beige overflow-hidden">
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
           
-          {/* Images */}
-          <div className="w-full lg:w-1/2 flex gap-4 md:gap-6 h-[400px] sm:h-[500px] md:h-[600px] relative">
-            <motion.div style={{ y: y1 }} className="w-1/2 h-[80%] mt-[20%] relative rounded-t-[100px] md:rounded-t-full overflow-hidden force-gpu shadow-xl shadow-dark-chocolate/10">
+          {/* Image */}
+          <div className="w-full lg:w-1/2 flex justify-center h-[400px] sm:h-[500px] md:h-[650px] relative px-4 md:px-0">
+            <motion.div style={{ y: y1 }} className="w-full max-w-sm md:max-w-md h-[90%] md:h-[95%] mt-auto relative rounded-t-[150px] md:rounded-t-full rounded-b-3xl overflow-hidden force-gpu shadow-2xl shadow-dark-chocolate/10 border-4 border-warm-cream/50">
               <Image 
                 src="https://images.unsplash.com/photo-1549931319-a545dcf3bc73?q=80&w=2070&auto=format&fit=crop" 
                 alt="Artisan baker kneading dough" 
                 fill
-                sizes="(max-width: 768px) 50vw, 25vw"
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
-              />
-            </motion.div>
-            <motion.div style={{ y: y2 }} className="w-1/2 h-[90%] relative rounded-b-[100px] md:rounded-b-full overflow-hidden force-gpu shadow-xl shadow-dark-chocolate/10">
-              <Image 
-                src="https://images.unsplash.com/photo-1589367920969-ab8e050bfc54?q=80&w=1974&auto=format&fit=crop" 
-                alt="Freshly baked artisan bread" 
-                fill
-                sizes="(max-width: 768px) 50vw, 25vw"
-                className="object-cover"
+                priority
               />
             </motion.div>
           </div>
